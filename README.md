@@ -1,3 +1,12 @@
+# 免责声明
+# 此脚本主要由 Linux shell，Windows power shell 相关查询命令完成，不涉及改动任何系统相关设置，不会造成任何不良影响。
+# 使用此脚本应具有相关Linux 基础、Windows系统基础，Docker基础和HTML基础。
+# 由于自身操作不当导致系统故障或者节点故障，本人不承担任何责任。
+# 此脚本无偿分享给派友，仅限于个人使用，禁止将此脚本用于商业行为。
+# 本人无义务和责任为使用者排查使用方面的问题，请自行学习下面的使用方法
+# 没有把握的情况，建议先使用虚拟机做实验，熟练后再放到节点上运行
+# 感谢理解。
+
 # pi-node-monitor
 Pi Network Pi node Stellar-core，docker and server monitoring.
 

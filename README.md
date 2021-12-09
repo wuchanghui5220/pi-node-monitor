@@ -138,3 +138,15 @@ docker pull nginx
 等待下载完成
 
 
+网页访问测试，主机服务器的内网IP地址 为 192.168.31.6
+本地主机服务器浏览器访问
+
+localhost:8080
+
+![image](https://user-images.githubusercontent.com/33740652/145435120-d1956f1f-d07d-4df4-8baa-13d97a2e2f2a.png)
+
+或者局域网内的另外一台电脑浏览器访问
+
+192.168.31.6:8080
+
+![image](https://user-images.githubusercontent.com/33740652/145435654-13543b38-67f9-43f6-bff4-2f4e088a496c.png)

@@ -67,7 +67,7 @@ wsl --set-default Ubuntu-20.04
 
 第三部分：
 
-下载压缩包到本地，链接地址 https://github.com/wuchanghui5220/pi-node-monitor
+下载脚本压缩包到本地，链接地址 https://github.com/wuchanghui5220/pi-node-monitor
 按照下图点击 zip 下载文件
 
 ![image](https://user-images.githubusercontent.com/33740652/145364856-17e8bd44-0eeb-45fd-8a10-267703d39837.png)

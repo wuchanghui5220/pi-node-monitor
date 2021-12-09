@@ -131,6 +131,8 @@ ls                          #查看查看目录内的文件，效果如下图
 
 拉取nginx 容器
 
+docker pull nginx
+
 ![image](https://user-images.githubusercontent.com/33740652/145429427-8281efc0-acf3-4e4f-8034-c1ee6808d5f6.png)
 
 等待下载完成

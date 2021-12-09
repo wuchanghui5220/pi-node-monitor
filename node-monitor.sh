@@ -38,7 +38,7 @@ n_status_=`cat $info |egrep "Catching|Waiting" |tail -1`
 
 
 ## System informations
-./systeminfo.ps1 >./hostlog.log
+./systeminfo.sh >./hostlog.log
 dos2unix ./hostlog.log &>/dev/null
 
 s_version=`head -1 ./hostlog.log`

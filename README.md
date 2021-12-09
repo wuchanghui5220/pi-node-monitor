@@ -13,6 +13,7 @@ WSL2安装步骤参考微软官网链接：
 https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
 
 在微软应用商店搜索 ubuntu 并安装
+
 ![image](https://user-images.githubusercontent.com/33740652/145417025-96b9bb91-f4fa-421b-9b7f-0e5c1b5f14be.png)
 
 安装完成，点击打开
@@ -23,7 +24,10 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
 
 ![image](https://user-images.githubusercontent.com/33740652/145417870-a68df0f9-4dea-4d5f-97d3-d5ac5ecccda5.png)
 
+![image](https://user-images.githubusercontent.com/33740652/145419150-95fb096a-3521-42ed-9d10-dd56973e0f12.png)
+
 ![image](https://user-images.githubusercontent.com/33740652/145416334-7caa05be-dc29-4e98-b8fa-bc15f51a98f0.png)
+
 
 第二部分：
 

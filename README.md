@@ -109,12 +109,17 @@ ls                          #查看查看目录内的文件，效果如下图
 如图所示，脚本一直运行，要停止 按 Ctrl + C 即可停止。
 
 脚本已经开始采集相关信息，并将相关信息写入 当前目录下的 nginx目录内的index.hmtl 文件，这是web 网页文件。
+
 监控信息的网页已设置每隔6秒自动刷新，使用浏览器访问这个网页即可看到相关监控。
+
 双击目录 nginx，目录内 的index.html 就是我们需要访问的网页。
+
+![image](https://user-images.githubusercontent.com/33740652/145426408-6bc67bf1-6447-45fa-8c3d-2154ed8d0484.png)
+
 
 ![image](https://user-images.githubusercontent.com/33740652/145369116-c0257f40-ae1d-4b54-bf80-796e73342141.png)
 
-
+![image](https://user-images.githubusercontent.com/33740652/145369308-5499fcc4-ea23-4579-911a-8d66f2706cab.png)
 
 ![image](https://user-images.githubusercontent.com/33740652/145369661-89f5b377-7068-41db-ba5f-e8b289e6a873.png)
 

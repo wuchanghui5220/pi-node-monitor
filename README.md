@@ -104,11 +104,17 @@ ls                          #查看查看目录内的文件，效果如下图
 
 ./initial.sh
 
+#  点 和 斜杠 不能少
+
+提示输入 Linux 子系统用户的密码
+
 ![image](https://user-images.githubusercontent.com/33740652/145441722-6704fa59-0d67-4995-8b64-860873393238.png)
 
 运行监控采集脚本
 
-./node-monitor.sh           #  点 斜杠 不能少
+./node-monitor.sh           
+
+#  点 和 斜杠 不能少
 
 效果如下图
 

@@ -2,4 +2,4 @@
 
 sudo apt update
 sudo apt install dos2unix
-sodu apt install unzip
+sudo apt install unzip

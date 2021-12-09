@@ -83,15 +83,17 @@ wsl --set-default Ubuntu-20.04
 ![image](https://user-images.githubusercontent.com/33740652/145423044-7b9bc1c0-654d-4554-9d0c-6c09ddbd949d.png)
 
 
-![image](https://user-images.githubusercontent.com/33740652/145367622-f7f8fe63-f5b3-4306-b964-4341e3137d15.png)
 
 在Ubuntu 环境，开始使用shell 命令操作
 
-cd Downloads/               #这个命令进入到 下载目录 
+cd Downloads/               #进入下载目录 
 
-cd pi-node-monitor-main/    #这个命令再进入到解压zip文件的目录
+cd pi-node-monitor-main/    #再进入到解压zip文件的目录
 
-ls                          #查看目录内的文件，效果如下图
+ls                          #查看查看目录内的文件，效果如下图
+
+![image](https://user-images.githubusercontent.com/33740652/145424563-607ea953-8b5f-4917-abfc-9f50330adfe0.png)
+
 
 ![image](https://user-images.githubusercontent.com/33740652/145367874-1eee6bc3-8106-44d8-8b6d-8afcfc30203a.png)
 

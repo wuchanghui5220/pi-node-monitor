@@ -11,6 +11,18 @@ pi node软件已经正常运行。
 节点服务器必须安装Windows Linux子系统发行版之一（例如：Ubuntu-20.04），并设置版本为V2.
 WSL2安装步骤参考微软官网链接：
 https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
+
+在微软应用商店搜索 ubuntu 并安装
+![image](https://user-images.githubusercontent.com/33740652/145417025-96b9bb91-f4fa-421b-9b7f-0e5c1b5f14be.png)
+
+安装完成，点击打开
+
+![image](https://user-images.githubusercontent.com/33740652/145417208-87032c15-9027-4144-99bc-745852126dda.png)
+
+第一次运行时，需要设置一个用户名和密码（可以随意设置用户名和密码）
+
+![image](https://user-images.githubusercontent.com/33740652/145417870-a68df0f9-4dea-4d5f-97d3-d5ac5ecccda5.png)
+
 ![image](https://user-images.githubusercontent.com/33740652/145416334-7caa05be-dc29-4e98-b8fa-bc15f51a98f0.png)
 
 第二部分：

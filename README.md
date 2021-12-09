@@ -65,7 +65,7 @@ wsl --set-default Ubuntu-20.04
 
 第四部分：
 
-解压缩下载的zip文件，解压到当前文件夹 或者你喜欢的目录位置
+如果你使用的是谷歌浏览器，默认文件下载目录是 “下载” 或者 “Download” 目录，解压缩下载的zip文件，解压到当前文件夹 或者你喜欢的目录位置
 
 ![image](https://user-images.githubusercontent.com/33740652/145366051-8fbca61b-632c-4d66-b9cf-91375b94a264.png)
 

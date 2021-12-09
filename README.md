@@ -23,10 +23,24 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
 第一次运行时，需要设置一个用户名和密码（可以随意设置用户名和密码）
 
 ![image](https://user-images.githubusercontent.com/33740652/145417870-a68df0f9-4dea-4d5f-97d3-d5ac5ecccda5.png)
+Ubuntu子系统已经安装成功。
+
+我们在 “开始” 菜单搜索 power shell，打开 power shell
+在命令行输入 
+wsl -l -v 
+可以查看当前已经安装的Linux 子系统
+
+设置 刚才安装的 Ubuntu-20.04 为默认子系统
+
+再次查看 wsl -l -v ，设置成功
+
+输入 ubuntu 即可进入 Ubuntu-20.04 子系统
+
+效果如下：
 
 ![image](https://user-images.githubusercontent.com/33740652/145419150-95fb096a-3521-42ed-9d10-dd56973e0f12.png)
 
-![image](https://user-images.githubusercontent.com/33740652/145416334-7caa05be-dc29-4e98-b8fa-bc15f51a98f0.png)
+
 
 
 第二部分：

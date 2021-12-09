@@ -19,19 +19,30 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
 第三部分：
 下载压缩包到本地，链接地址 https://github.com/wuchanghui5220/pi-node-monitor
 按照下图点击 zip 下载文件
+
 ![image](https://user-images.githubusercontent.com/33740652/145364856-17e8bd44-0eeb-45fd-8a10-267703d39837.png)
 
 第四部分：
 解压缩下载的zip文件，解压到当前文件夹 或者你喜欢的目录位置
+
 ![image](https://user-images.githubusercontent.com/33740652/145366051-8fbca61b-632c-4d66-b9cf-91375b94a264.png)
+
 双击进入目录，在空白处点击右键，选择 在Windows 终端中打开
+
 ![image](https://user-images.githubusercontent.com/33740652/145367153-37fa6753-ecab-4c14-88c9-5f485f6baa52.png)
+
 点击小箭头，选择 Ubuntu
+
 ![image](https://user-images.githubusercontent.com/33740652/145367622-f7f8fe63-f5b3-4306-b964-4341e3137d15.png)
+
 在Ubuntu 环境，开始使用shell 命令操作
+
 cd Downloads/               #这个命令进入到 下载目录 
+
 cd pi-node-monitor-main/    #这个命令再进入到解压zip文件的目录
+
 ls                          #查看目录内的文件，效果如下图
+
 ![image](https://user-images.githubusercontent.com/33740652/145367874-1eee6bc3-8106-44d8-8b6d-8afcfc30203a.png)
 
 第五部分：
@@ -43,9 +54,13 @@ ls                          #查看目录内的文件，效果如下图
 
 我们需要的监控信息网页已经开始每隔6秒自动刷新，使用浏览器访问这个网页即可看到。
 双击目录 nginx，目录内 的index.html 就是我们需要访问的网页。
+
 ![image](https://user-images.githubusercontent.com/33740652/145369116-c0257f40-ae1d-4b54-bf80-796e73342141.png)
+
 ![image](https://user-images.githubusercontent.com/33740652/145369308-5499fcc4-ea23-4579-911a-8d66f2706cab.png)
+
 ![image](https://user-images.githubusercontent.com/33740652/145369661-89f5b377-7068-41db-ba5f-e8b289e6a873.png)
+
 
 第六部分：
 以上5个部分完成了信息采集，并生成网页，我们可以本地查看，但要想使用网络访问，比如手机上或者其它电脑来访问，

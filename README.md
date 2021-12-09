@@ -100,6 +100,14 @@ ls                          #查看查看目录内的文件，效果如下图
 
 运行脚本
 
+首次使用，请先运行 初始化脚本，以后则不需要重复运行。
+
+./initial.sh
+
+![image](https://user-images.githubusercontent.com/33740652/145441722-6704fa59-0d67-4995-8b64-860873393238.png)
+
+运行监控采集脚本
+
 ./node-monitor.sh           #  点 斜杠 不能少
 
 效果如下图
@@ -133,9 +141,26 @@ ls                          #查看查看目录内的文件，效果如下图
 
 docker pull nginx
 
-![image](https://user-images.githubusercontent.com/33740652/145429427-8281efc0-acf3-4e4f-8034-c1ee6808d5f6.png)
+![image](https://user-images.githubusercontent.com/33740652/145439687-a792edd2-ded6-4cc1-8f70-a89297b85522.png)
 
-等待下载完成
+耐心等待下载完成，网速快的话几分钟完成。
+
+查看已下载的容器
+
+docker images
+
+运行容器
+
+docker run --name mynginx -p 8080:80 -v /mnt/c/Users/wucha/Downloads/pi-node-monitor-main/nginx:/usr/share/nginx/html:ro -d nginx
+
+查看容器状态
+
+docker ps
+
+如下图
+
+![image](https://user-images.githubusercontent.com/33740652/145440666-e1d95d11-209c-42a6-a8d7-ebfb0c068181.png)
+
 
 
 网页访问测试

@@ -49,8 +49,9 @@ s_memall=`head -5 ./hostlog.log|tail -1`
 s_memused=`head -6 ./hostlog.log|tail -1`
 
 # 创建web页面表格，把监控信息填写到表格
-touch ./table.txt
-file_="./table.txt"
+touch ./web_table.html
+touch ./webinfo.html
+file_="./web_table.html"
 echo "" >$file_
 echo '<div>
         <table id="hor-minimalist-a" summary="Employee Pay Sheet">

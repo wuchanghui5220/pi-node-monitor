@@ -95,7 +95,6 @@ ls                          #查看查看目录内的文件，效果如下图
 ![image](https://user-images.githubusercontent.com/33740652/145424563-607ea953-8b5f-4917-abfc-9f50330adfe0.png)
 
 
-![image](https://user-images.githubusercontent.com/33740652/145367874-1eee6bc3-8106-44d8-8b6d-8afcfc30203a.png)
 
 第五部分：
 
@@ -105,10 +104,12 @@ ls                          #查看查看目录内的文件，效果如下图
 
 效果如下图
 
-![image](https://user-images.githubusercontent.com/33740652/145368497-0f031808-58b8-484a-b315-c70d30d13720.png)
+![image](https://user-images.githubusercontent.com/33740652/145425001-435c496e-d4f9-4a5b-b90a-f67e3477e319.png)
+
 如图所示，脚本一直运行，要停止 按 Ctrl + C 即可停止。
 
-我们需要的监控信息网页已经开始每隔6秒自动刷新，使用浏览器访问这个网页即可看到。
+脚本已经开始采集相关信息，并将相关信息写入 当前目录下的 nginx目录内的index.hmtl 文件，这是web 网页文件。
+监控信息的网页已设置每隔6秒自动刷新，使用浏览器访问这个网页即可看到相关监控。
 双击目录 nginx，目录内 的index.html 就是我们需要访问的网页。
 
 ![image](https://user-images.githubusercontent.com/33740652/145369116-c0257f40-ae1d-4b54-bf80-796e73342141.png)

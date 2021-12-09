@@ -16,3 +16,5 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
 在 Settings -->> Resources -->> · WSL INTEGRATION 启用一个已安装的Linux子系统发行版，例如下图，应用并重启。
 ![image](https://user-images.githubusercontent.com/33740652/145140772-64cff51a-f928-494e-b1a1-d46b9c982084.png)
 
+第三部分：
+![image](https://user-images.githubusercontent.com/33740652/145364856-17e8bd44-0eeb-45fd-8a10-267703d39837.png)

@@ -75,9 +75,13 @@ wsl --set-default Ubuntu-20.04
 
 在空白处点击右键，选择 在Windows 终端中打开
 
-![image](https://user-images.githubusercontent.com/33740652/145367153-37fa6753-ecab-4c14-88c9-5f485f6baa52.png)
+![image](https://user-images.githubusercontent.com/33740652/145422862-3b15f57f-067f-467c-b061-e1288e39c9e3.png)
 
-点击小箭头，选择 Ubuntu
+
+点击小箭头，选择 Ubuntu-20.04
+
+![image](https://user-images.githubusercontent.com/33740652/145423044-7b9bc1c0-654d-4554-9d0c-6c09ddbd949d.png)
+
 
 ![image](https://user-images.githubusercontent.com/33740652/145367622-f7f8fe63-f5b3-4306-b964-4341e3137d15.png)
 

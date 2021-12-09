@@ -150,3 +150,18 @@ localhost:8080
 192.168.31.6:8080
 
 ![image](https://user-images.githubusercontent.com/33740652/145435654-13543b38-67f9-43f6-bff4-2f4e088a496c.png)
+
+使用公网ip进行访问，此节点的公网IP为 114.246.194.94
+
+在浏览器输入
+
+114.246.194.94:8888
+
+8888 是在路由器配置的端口映射（当然，你可以设置为其他数字，比如9999，5678 都可以，只要在路由器映射正确即可），
+
+将公网ip的 8888端口映射到局域网内 IP 为 192.168.31.6 这台主机的 8080 端口，访问nginx
+
+![image](https://user-images.githubusercontent.com/33740652/145437754-9a56006c-cb95-4791-b965-2a30c0d4c475.png)
+
+![image](https://user-images.githubusercontent.com/33740652/145436842-9f7de7f4-9aa7-4790-9155-329bffe8afb2.png)
+

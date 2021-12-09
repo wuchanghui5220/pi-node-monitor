@@ -86,11 +86,17 @@ wsl --set-default Ubuntu-20.04
 
 在Ubuntu 环境，开始使用shell 命令操作
 
-cd Downloads/               #进入下载目录 
+进入下载目录 
 
-cd pi-node-monitor-main/    #再进入到解压zip文件的目录
+cd Downloads/
 
-ls                          #查看查看目录内的文件，效果如下图
+再进入到解压文件的目录
+
+cd pi-node-monitor-main/
+
+查看查看目录内的文件，效果如下图
+
+ls
 
 ![image](https://user-images.githubusercontent.com/33740652/145424563-607ea953-8b5f-4917-abfc-9f50330adfe0.png)
 
@@ -104,7 +110,7 @@ ls                          #查看查看目录内的文件，效果如下图
 
 ./initial.sh
 
-#  点 和 斜杠 不能少
+点 和 斜杠 不能少
 
 提示输入 Linux 子系统用户的密码
 
@@ -114,7 +120,7 @@ ls                          #查看查看目录内的文件，效果如下图
 
 ./node-monitor.sh           
 
-#  点 和 斜杠 不能少
+点 和 斜杠 不能少
 
 效果如下图
 

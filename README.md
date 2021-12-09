@@ -117,8 +117,6 @@ ls                          #查看查看目录内的文件，效果如下图
 ![image](https://user-images.githubusercontent.com/33740652/145426408-6bc67bf1-6447-45fa-8c3d-2154ed8d0484.png)
 
 
-![image](https://user-images.githubusercontent.com/33740652/145369116-c0257f40-ae1d-4b54-bf80-796e73342141.png)
-
 ![image](https://user-images.githubusercontent.com/33740652/145369308-5499fcc4-ea23-4579-911a-8d66f2706cab.png)
 
 ![image](https://user-images.githubusercontent.com/33740652/145427749-302cccc9-bcb7-4b88-ade4-7d5a48cba08f.png)

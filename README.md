@@ -36,6 +36,8 @@ wsl -l -v
 
 设置 刚才安装的 Ubuntu-20.04 为默认子系统
 
+wsl --set-default Ubuntu-20.04
+
 再次查看 wsl -l -v ，设置成功
 
 输入 ubuntu 即可进入 Ubuntu-20.04 子系统

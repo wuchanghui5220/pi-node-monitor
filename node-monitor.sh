@@ -184,7 +184,7 @@ do
         cat ./web_head.html >./webinfo.html
         cat ./web_table.html >>./webinfo.html
         cat ./web_tail.html >>./webinfo.html
-        cat ./webinfo.txt >./nginx/index.html
+        cat ./webinfo.html >./nginx/index.html
         echo "" >./webinfo.html
         sleep 1
         let i-=1

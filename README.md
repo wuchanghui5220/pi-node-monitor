@@ -116,7 +116,7 @@ ls
 
 ![image](https://user-images.githubusercontent.com/33740652/145441722-6704fa59-0d67-4995-8b64-860873393238.png)
 
-运行监控采集脚本
+初始化完成后，运行监控采集脚本
 
 ./node-monitor.sh           
 

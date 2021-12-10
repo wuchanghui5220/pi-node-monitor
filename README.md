@@ -14,20 +14,16 @@ Pi Network Pi node Stellar-core，docker and server monitoring.
 
 # 原理简介：
 
-在Windows 系统安装Linux Ubuntu子系统，下载此shell脚本，解压后直接运行 ./node-monitor.sh 
+在Windows 系统安装Linux Ubuntu子系统，下载此shell脚本，解压后直接运行脚本
 
-首次使用需要先运行初始化脚本 
-
-./initial.sh
-
-node-monitor.sh 脚本使用 Linux和Windows 相关查询命令，采集以下信息：
+脚本使用 Linux和Windows 相关查询命令，采集以下信息：
   1) pi node 共识容器的状态，cpu使用率，内存使用率，I/O 
   2) 主机系统状态，CPU使用率，内存使用率
   3) pi node stellar-core 状态，常见参数 同步状态 state age local_block_number Incoming Outgoing
 
 将以上信息写入到脚本所在目录的nginx 目录内的网页文件 index.html ,就可以访问这个网页。
-要在网络上进行访问index.html, 所以需要安装网页访问服务软件 nginx
-不过现在很方便，Docker 提供了nginx 容器，我们拉取到本地，把刚才nginx 目录挂载给nginx容器，就可以实现真正的网络访问。
+要在网路上进行访问index.html, 所以需要安装网页访问服务软件 nginx
+不过现在很方便，Docker 提供了nginx 容器，我们拉取到本地，把刚才nginx 目录挂载给nginx容器，就可以实现真正的网路访问。
 由于节点服务器有公网ip，或者路由器有公网ip，我们把nginx容器的端口在路由器上做端口映射，就可以实现在公网访问节点的监控信息。
 
 # 以下动手实操部分，建议有相关基础和动手能力强的小伙伴根据下面的说明进行操作。
@@ -180,7 +176,7 @@ Windows 的 winget 命令需要 同意源协议条款 ，输入 y 继续
 
 第六部分：
 
-以上5个部分完成了信息采集，并生成网页，我们可以本地查看，但要想使用网络访问，比如手机上或者其它电脑来访问，
+以上5个部分完成了信息采集，并生成网页，我们可以本地查看，但要想使用网路访问，比如手机上或者其它电脑来访问，
 就需要将我们的网页挂载到提供 访问服务的 软件 nginx 上，Docker提供了nginx 容器，我们直接拉取到本地，运行nginx容器，
 把刚才的目录挂载给nginx，就可以通过网络访问了。
 
@@ -200,7 +196,7 @@ docker images
 
 docker run --name mynginx -p 8080:80 -v /mnt/c/Users/wucha/Downloads/pi-node-monitor-main/nginx:/usr/share/nginx/html:ro -d nginx
 
-简单说明：
+参数简单说明：
       --name 给容器取个名字，叫 mynginx
       -p 8080:80  容器内部是80端口，映射到主机的 8080 端口
       -v /mnt/c/Users/wucha/Downloads/pi-node-monitor-main/nginx 这个就是我们下载后解压缩的目录，要把 nginx 目录挂载给容器

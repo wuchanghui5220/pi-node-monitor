@@ -16,7 +16,9 @@ Pi Network Pi node Stellar-core，docker and server monitoring.
 
 在Windows 系统安装Linux Ubuntu子系统，下载此shell脚本，解压后直接运行 ./node-monitor.sh 
 
-首次使用需要先运行初始化脚本 ./initial.sh
+首次使用需要先运行初始化脚本 
+
+./initial.sh
 
 node-monitor.sh 脚本使用 Linux和Windows 相关查询命令，采集以下信息：
   1) pi node 共识容器的状态，cpu使用率，内存使用率，I/O 

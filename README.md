@@ -190,10 +190,17 @@ docker pull nginx
 
 docker images
 
-运行容器
+运行容器，如果下载的目录不是 "Download"，得根据你实际位置修改路径，nginx容器能找到的目录
 
 docker run --name mynginx -p 8080:80 -v /mnt/c/Users/wucha/Downloads/pi-node-monitor-main/nginx:/usr/share/nginx/html:ro -d nginx
 
+简单说明：
+      --name 给容器取个名字，叫 mynginx
+      -p 8080:80  容器内部是80端口，映射到主机的 8080 端口
+      -v /mnt/c/Users/wucha/Downloads/pi-node-monitor-main/nginx 这个就是我们下载后解压缩的目录，要把 nginx 目录挂载给容器
+      :/usr/share/nginx/html:ro -d nginx  这是容器内部的目录，不要改动，照着写就行
+  
+  
 查看容器状态
 
 docker ps
@@ -235,4 +242,5 @@ localhost:8080
 ![image](https://user-images.githubusercontent.com/33740652/145437754-9a56006c-cb95-4791-b965-2a30c0d4c475.png)
 
 ![image](https://user-images.githubusercontent.com/33740652/145436842-9f7de7f4-9aa7-4790-9155-329bffe8afb2.png)
+
 

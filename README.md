@@ -121,9 +121,11 @@ cd Downloads/
 
 cd pi-node-monitor-main/
 
-查看查看目录内的文件，效果如下图
+查看查看目录内的文件
 
 ls
+
+效果如下图
 
 ![image](https://user-images.githubusercontent.com/33740652/145424563-607ea953-8b5f-4917-abfc-9f50330adfe0.png)
 

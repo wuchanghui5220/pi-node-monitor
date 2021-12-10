@@ -248,3 +248,11 @@ localhost:8080
 ![image](https://user-images.githubusercontent.com/33740652/145436842-9f7de7f4-9aa7-4790-9155-329bffe8afb2.png)
 
 
+# 常见问题总结
+
+如果Docker 重启，或者主机重启 ，nginx 容器不会自动运行，需要手动打开，
+
+如下图
+
+![image](https://user-images.githubusercontent.com/33740652/145514017-88195195-afb6-4537-b3ea-74c924a1f358.png)
+

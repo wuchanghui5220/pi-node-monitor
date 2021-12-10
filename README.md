@@ -141,6 +141,10 @@ ls
 
 点 和 斜杠 不能少
 
+![image](https://user-images.githubusercontent.com/33740652/145513158-08f1ed1a-7b35-41f7-a8e1-1329a80b287a.png)
+
+Windows 的 winget 命令需要 同意源协议条款 ，输入 y 继续
+
 提示输入 Linux 子系统用户的密码
 
 ![image](https://user-images.githubusercontent.com/33740652/145441722-6704fa59-0d67-4995-8b64-860873393238.png)

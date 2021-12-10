@@ -56,13 +56,13 @@ Ubuntu子系统已经安装成功。
 
 在命令行输入 
 
-wsl -l -v 
+    wsl -l -v 
 
 可以查看当前已经安装的Linux 子系统
 
 设置 刚才安装的 Ubuntu-20.04 为默认子系统
 
-wsl --set-default Ubuntu-20.04
+    wsl --set-default Ubuntu-20.04
 
 再次查看 wsl -l -v ，设置成功
 
@@ -114,15 +114,15 @@ wsl --set-default Ubuntu-20.04
 
 进入下载目录 
 
-cd Downloads/
+    cd Downloads/
 
 再进入到解压文件的目录
 
-cd pi-node-monitor-main/
+    cd pi-node-monitor-main/
 
 查看查看目录内的文件
 
-ls
+    ls
 
 效果如下图
 
@@ -136,7 +136,7 @@ ls
 
 首次使用，请先运行 初始化脚本，以后则不需要重复运行。
 
-./initial.sh
+    ./initial.sh
 
 点 和 斜杠 不能少
 
@@ -150,7 +150,7 @@ Windows 的 winget 命令需要 同意源协议条款 ，输入 y 继续
 
 初始化完成后，运行监控采集脚本
 
-./node-monitor.sh           
+    ./node-monitor.sh           
 
 点 和 斜杠 不能少
 
@@ -183,7 +183,7 @@ Windows 的 winget 命令需要 同意源协议条款 ，输入 y 继续
 
 拉取nginx 容器
 
-docker pull nginx
+    docker pull nginx
 
 ![image](https://user-images.githubusercontent.com/33740652/145439687-a792edd2-ded6-4cc1-8f70-a89297b85522.png)
 
@@ -191,11 +191,11 @@ docker pull nginx
 
 查看已下载的容器
 
-docker images
+    docker images
 
 运行容器，如果下载的目录不是 "Download"，请根据你实际位置修改路径，nginx容器能找到的目录
 
-docker run --name mynginx -p 8080:80 -v /mnt/c/Users/wucha/Downloads/pi-node-monitor-main/nginx:/usr/share/nginx/html:ro -d nginx
+    docker run --name mynginx -p 8080:80 -v /mnt/c/Users/wucha/Downloads/pi-node-monitor-main/nginx:/usr/share/nginx/html:ro -d nginx
 
 参数简单说明：
 
@@ -210,7 +210,7 @@ docker run --name mynginx -p 8080:80 -v /mnt/c/Users/wucha/Downloads/pi-node-mon
   
 查看容器状态
 
-docker ps
+    docker ps
 
 如下图
 
@@ -224,13 +224,13 @@ docker ps
 
 本地主机服务器浏览器访问
 
-localhost:8080
+    localhost:8080
 
 ![image](https://user-images.githubusercontent.com/33740652/145435120-d1956f1f-d07d-4df4-8baa-13d97a2e2f2a.png)
 
 或者局域网内的另外一台电脑或者手机浏览器访问
 
-192.168.31.6:8080
+    192.168.31.6:8080
 
 ![image](https://user-images.githubusercontent.com/33740652/145435654-13543b38-67f9-43f6-bff4-2f4e088a496c.png)
 
@@ -240,7 +240,7 @@ localhost:8080
 
 在浏览器输入
 
-114.246.194.94:8888
+    114.246.194.94:8888
 
 8888 是在路由器配置的映射端口（当然，你可以设置为其他数字，比如9999，5678 都可以，只要在路由器映射正确即可），
 

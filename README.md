@@ -319,4 +319,8 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
 
 确认上面出现的问题都解决了，再 重新执行一次初始化脚本 ./initial.sh 不再报错，问题解决
 
+# 无法使用网络访问 监控网页
+
+不要使用power shell终端运行 nginx 容器，直接在 Ubuntu 系统使用普通用户运行即可
+
 

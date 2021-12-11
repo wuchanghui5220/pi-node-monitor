@@ -197,7 +197,7 @@ Windows 的 winget 命令需要 同意源协议条款 ，输入 y 继续
 
     docker run --name mynginx -p 8080:80 -v /mnt/c/Users/wucha/Downloads/pi-node-monitor-main/nginx:/usr/share/nginx/html:ro -d nginx
 
-如果弹出提示，点击
+如果弹出提示，点击 允许
 
 ![image](https://user-images.githubusercontent.com/33740652/145663547-4372e8b7-80d5-4726-8b33-db0a35b088ef.png)
 

@@ -282,6 +282,10 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
       Ubuntu-20.04           Running         2
       docker-desktop-data    Running         2
 
+回到docker 设置界面，刷新一下，即出现 Ubuntu-20.04
+
+![image](https://user-images.githubusercontent.com/33740652/145663024-c62458d7-7c64-495e-bc20-e9a8126524a5.png)
+
 ## 如果在运行初始化 initial.sh 出现已下报错，
 
 ![image](https://user-images.githubusercontent.com/33740652/145662270-0052d7f4-a46e-497f-a237-1094571a5cd5.png)

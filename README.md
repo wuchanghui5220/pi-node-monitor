@@ -253,7 +253,36 @@ Windows 的 winget 命令需要 同意源协议条款 ，输入 y 继续
 
 # 常见问题总结
 
-如果在运行初始化 initial.sh 出现已下报错，
+## wsl 版本问题，在微软应用商店安装Ubuntu-20.04，查询版本 是 v1，
+
+重新设置一次 wsl1 to wsl2 步骤，参考微软官网链接
+
+https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
+
+然后卸载Ubuntu
+
+![image](https://user-images.githubusercontent.com/33740652/145662912-bfad98c1-5936-4ac9-8c25-3442697548bd.png)
+
+再回到微软应用商店，重新搜索并安装Ubuntu-20.04
+
+在powershell查看
+
+    PS C:\Users\wucha> wsl -l -v
+      NAME                   STATE           VERSION
+    * Ubuntu-20.04           Stopped         1
+      docker-desktop         Running         2
+      docker-desktop-data    Running         2
+    PS C:\Users\little9bao> wsl -l -v
+      NAME                   STATE           VERSION
+    * docker-desktop         Running         2
+      docker-desktop-data    Running         2
+    PS C:\Users\little9bao> wsl -l -v
+      NAME                   STATE           VERSION
+    * docker-desktop         Running         2
+      Ubuntu-20.04           Running         2
+      docker-desktop-data    Running         2
+
+## 如果在运行初始化 initial.sh 出现已下报错，
 
 ![image](https://user-images.githubusercontent.com/33740652/145662270-0052d7f4-a46e-497f-a237-1094571a5cd5.png)
 

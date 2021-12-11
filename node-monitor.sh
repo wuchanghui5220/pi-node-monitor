@@ -38,7 +38,14 @@ function node_monitor(){
         n_out=`sed -n "${end_inbound},${end_outbound}p" $info |grep "stellar" |wc -l`
         n_status_=`cat $info |egrep "Catching|Waiting" |tail -1`
 
-
+        ## 采集更多 stellar-core 参数
+        adv=`cat $info |egrep "history_failure_rate|authenticated_count|pending_count|cost|last_check_ledger" |awk -F':' '{print $2}' |sed 's/^ *//g'|sed 's/"//g'|sed 's/,//g'|sed 's/ *$//g' >./advanced.log`
+        a_fault_rate=`head -1 ./advanced.log`
+        a_auth_count=`head -2 ./advanced.log |tail -1`
+        a_pending_count=`head -3 ./advanced.log |tail -1`
+        a_cost=`head -4 ./advanced.log |tail -1`
+        a_last_check_ledger=`head -5 ./advanced.log |tail -1`
+        
         ## 采集主机系统相关信息，使用Windows powershell 命令完成
         ./systeminfo.sh >./hostlog.log
         dos2unix ./hostlog.log &>/dev/null
@@ -160,6 +167,36 @@ function node_monitor(){
                     echo $n_out >>$file_
                     echo '</td>
                 </tr> '>>$file_
+                    echo '
+        <tr>
+            <td></td>
+            <td>failure_rate</td>
+            <td>cost</td>
+            <td>last_check</td>
+            <td>a_count</td>
+            <td>p_count</td>
+
+        </tr>
+        <tr id="hor-minimalist-a-td">
+            <td> ' >>$file_
+            echo "" >>$file_
+            echo '</td>
+            <td>' >>$file_
+            echo $a_fault_rate >>$file_
+            echo '</td>
+            <td>' >>$file_
+            echo $a_cost >>$file_
+            echo '</td>
+            <td>' >>$file_
+            echo $a_last_check_ledger>>$file_
+            echo '</td>
+            <td>' >>$file_
+            echo $a_auth_count >>$file_
+            echo '</td>
+            <td>' >>$file_
+            echo $a_pending_count>>$file_
+            echo '</td>
+        </tr> '>>$file_
         ## 下面判断语句，如果出现不同步情况，将采集 status 相关信息，并写入网页文件
         if [ "" != "$n_status_" ];then
                 echo '

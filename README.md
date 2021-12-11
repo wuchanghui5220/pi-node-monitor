@@ -272,11 +272,11 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
     * Ubuntu-20.04           Stopped         1
       docker-desktop         Running         2
       docker-desktop-data    Running         2
-    PS C:\Users\little9bao> wsl -l -v
+    PS C:\Users\wucha> wsl -l -v
       NAME                   STATE           VERSION
     * docker-desktop         Running         2
       docker-desktop-data    Running         2
-    PS C:\Users\little9bao> wsl -l -v
+    PS C:\Users\wucha> wsl -l -v
       NAME                   STATE           VERSION
     * docker-desktop         Running         2
       Ubuntu-20.04           Running         2

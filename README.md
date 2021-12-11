@@ -306,3 +306,9 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
 
 ![image](https://user-images.githubusercontent.com/33740652/145514017-88195195-afb6-4537-b3ea-74c924a1f358.png)
 
+
+## 运行 监控脚本出错
+
+确认上面出现的问题都解决了，再 重新执行一次初始化脚本 ./initial.sh 不再报错，问题解决
+
+

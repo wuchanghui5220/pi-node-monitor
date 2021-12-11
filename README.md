@@ -253,6 +253,14 @@ Windows 的 winget 命令需要 同意源协议条款 ，输入 y 继续
 
 # 常见问题总结
 
+如果在运行初始化 initial.sh 出现已下报错，
+
+![image](https://user-images.githubusercontent.com/33740652/145662270-0052d7f4-a46e-497f-a237-1094571a5cd5.png)
+
+则需要 安装或者更新 “应用安装程序”，在微软应用商店搜索并更新即可，然后重新运行初始化脚本
+
+![image](https://user-images.githubusercontent.com/33740652/145662234-1ec066f3-1749-4e6e-b930-26edc2edcd6d.png)
+
 如果Docker 重启，或者主机重启 ，nginx 容器不会自动运行，需要手动打开，
 
 如下图

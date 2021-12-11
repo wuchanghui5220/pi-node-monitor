@@ -181,7 +181,7 @@ Windows 的 winget 命令需要 同意源协议条款 ，输入 y 继续
 就需要将我们的网页挂载到提供 访问服务的 软件 nginx 上，Docker提供了nginx 容器，我们直接拉取到本地，运行nginx容器，
 把刚才的目录挂载给nginx，就可以通过网络访问了。
 
-重新打开一个power shell或者 Ubuntu 终端，拉取nginx 容器
+重新打开一个Ubuntu 终端，拉取nginx 容器
 
     docker pull nginx
 

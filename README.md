@@ -286,6 +286,12 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
 
 ![image](https://user-images.githubusercontent.com/33740652/145663024-c62458d7-7c64-495e-bc20-e9a8126524a5.png)
 
+点击应用并生效
+
+![image](https://user-images.githubusercontent.com/33740652/145663075-599b8427-9418-4b14-aa9e-98769e562563.png)
+
+
+
 ## 如果在运行初始化 initial.sh 出现已下报错，
 
 ![image](https://user-images.githubusercontent.com/33740652/145662270-0052d7f4-a46e-497f-a237-1094571a5cd5.png)

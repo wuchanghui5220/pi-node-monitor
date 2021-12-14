@@ -1,5 +1,88 @@
 #!/bin/bash
 
+# 屏幕显示，运行环境检查
+echo "运行环境检查："
+# 运行环境检查函数
+
+function env_check(){
+        pi="Pi-Network"
+        docker="Docker-Desktop"
+        l_nmap="nmap"
+        l_dos2unix="dos2unix"
+        nginx="nginx"
+        c_pi=`powershell.exe Get-Process "Pi*Network" |awk '/Pi/{print $8"-"$9}' |head -1`
+        c_docker=`powershell.exe Get-Process "Docker*Desktop" |awk '/Docker/{print $8"-"$9}' |head -1`
+        c_nmap=`dpkg -l |grep "nmap" |head -1 |awk '{print $2}'`
+        c_dos2unix=`dpkg -l |grep "dos2unix" |head -1 |awk '{print $2}'`
+        c_nginx=` docker ps |awk '/nginx/{print $2}'`
+
+        echo -n "Docker Desktop:   "
+        if [ "$c_pi" == "$pi" ];then
+                echo -e "\033[1;32m[ OK ]\033[0m"
+                echo "OK" >check_env.log
+        else
+                echo -e "\033[1;31m[ None ]\033[0m"
+                echo "None" >check_env.log
+
+        fi
+        sleep 1
+        echo -n "Pi Network Node:  "
+        if [ "$c_docker" == "$docker" ];then
+                echo -e "\033[1;32m[ OK ]\033[0m"
+                echo "OK" >>check_env.log
+        else
+                echo -e "\033[1;31m[ None ]\033[0m"
+                echo "None" >>check_env.log
+
+        fi
+        sleep 1
+        echo -n "Linux nmap:       "
+        if [ "$c_nmap" == "$l_nmap" ];then
+                echo -e "\033[1;32m[ OK ]\033[0m"
+                echo "OK" >>check_env.log
+        else
+                echo -e "\033[1;31m[ None ]\033[0m"
+                echo "None" >>check_env.log
+        fi
+        sleep 1
+        echo -n "Linux dos2unix:   "
+        if [ "$c_dos2unix" == "$l_dos2unix" ];then
+                echo -e "\033[1;32m[ OK ]\033[0m"
+                echo "OK" >>check_env.log
+        else
+                echo -e "\033[1;31m[ None ]\033[0m"
+                echo "None" >>check_env.log
+        fi
+        sleep 1
+        echo -n "nginx container:  "
+        if [ "$c_nginx" == "$nginx" ];then
+                echo -e "\033[1;32m[ OK ]\033[0m"
+                echo "OK" >>check_env.log
+        else
+                echo -e "\033[1;31m[ None ]\033[0m"
+                echo "None" >>check_env.log
+        fi
+        sleep 1
+
+}
+
+env_check
+# 环境检查结果判断，满足则程序开始运行，不满足退出。
+function check_out(){
+        for n  in `cat check_env.log`
+        do
+                if [ "$n" == "None" ];then
+                        echo "检查未全部通过，程序退出！"
+                        exit 0
+                fi
+        done
+
+
+}
+
+check_out
+
+# 监控程序开始运行
 echo "Pi node monitor is running "
 date "+%H:%M:%S  %Y/%m/%d"
 echo "脚本将一直运行，想要停止，请按 Ctrl + C"

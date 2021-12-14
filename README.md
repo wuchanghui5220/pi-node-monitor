@@ -323,4 +323,4 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
 
 不要使用power shell终端运行 nginx 容器，直接在 Ubuntu 系统使用普通用户运行即可
 
-
+# 更新版本或者重新安装时，都要执行初始化脚本 ./initial.sh

@@ -7,6 +7,22 @@ body
 {
 	line-height: 1.6em;
 }
+
+img {
+        height: 27px;
+}
+.gray {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: gray;
+}
+.gold {
+        height: 30px;
+}
+
 #hor-minimalist-a
 {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;

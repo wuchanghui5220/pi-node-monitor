@@ -1,63 +1,116 @@
 #!/bin/bash
+
 echo "Pi node monitor is running "
 date "+%H:%M:%S  %Y/%m/%d"
 echo "脚本将一直运行，想要停止，请按 Ctrl + C"
 
-# shell 监控函数
-function node_monitor(){
+# 获取本机公网ip地址
+function get_ip(){
+        ip=`curl http://ifconfig.me 2> /dev/null`
+        # shellcheck disable=SC2086
+        # shellcheck disable=SC2034
+        return_ip=$ip
+}
 
-        ## 获取本机公网ip地址
-        ip_=`curl http://ifconfig.me 2> /dev/null`
 
-        ## 采集stellar-core 信息，写入到文件
+
+# 查询 pi-consensus 容器运行状态。
+function docker_stats(){
+        # shellcheck disable=SC2006
+        docker_stats_info=` docker stats --no-stream |grep "pi-consensus" |awk  '{print $2"\n"$3"\n"$7"\n"$8"\n"$10}'`
+        # docker版本是相对稳定的参数，没必要每次都要查询，运行脚本时查询一次即可，此处直接读取。
+        c_version=$1
+        c_name=`echo $docker_stats_info|awk '{print $1}'`
+        c_cpu=`echo $docker_stats_info|awk '{print $2}'`
+        c_mem=`echo $docker_stats_info|awk '{print $3}'`
+        c_in=`echo $docker_stats_info|awk '{print $4}'`
+        c_out=`echo $docker_stats_info|awk '{print $5}'`
+}
+
+# 查询 stellar-core 信息，结果写入到文件待用。
+function stellar-core_info(){
         touch ./consensus_log.log
         info="./consensus_log.log"
         docker exec -it pi-consensus stellar-core http-command peers > $info
         docker exec -it pi-consensus stellar-core http-command info >> $info
 
-        ## 采集 Docker stats 信息
-        dinfo=` docker stats --no-stream |grep "pi-consensus" |awk  '{print $2"\n"$3"\n"$7"\n"$8"\n"$10}'`
+        ## 使用 stellar-core 查询结果进行数据筛选，读取相关参数。
 
-        c_version=$1
-        c_name=`echo $dinfo|awk '{print $1}'`
-        c_cpu=`echo $dinfo|awk '{print $2}'`
-        c_mem=`echo $dinfo|awk '{print $3}'`
-        c_in=`echo $dinfo|awk '{print $4}'`
-        c_out=`echo $dinfo|awk '{print $5}'`
-
-        ## 采集 Pi Node troubleshooting 相关信息 
-        start_inbound=`cat $info |sed -n -e "/bound/=" -e "/bound/p" |sed -n '/^[0-9]/p' |head -1`
-        end_inbound=`cat $info |sed -n -e "/bound/=" -e "/bound/p" |sed -n '/^[0-9]/p' |head -2|tail -1`
-        end_outbound=`cat $info |sed -n -e "/bound/=" -e "/bound/p" |sed -n '/^[0-9]/p' |head -3|tail -1`
-
-        n_version=$2
-        n_state=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '6p' |awk -F'"' '{print $2}'`
-        n_age=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '2p' |awk -F',' '{print $1}'`
-        n_num=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '3p' |awk -F',' '{print $1}'`
-        n_in=`sed -n "${start_inbound},${end_inbound}p" $info |grep "stellar" |wc -l`
-        n_out=`sed -n "${end_inbound},${end_outbound}p" $info |grep "stellar" |wc -l`
-        n_status_=`cat $info |egrep "Catching|Waiting" |tail -1`
-
-        ## 采集更多 stellar-core 参数
-        adv=`cat $info |egrep "history_failure_rate|authenticated_count|pending_count|cost|last_check_ledger" |awk -F':' '{print $2}' |sed 's/^ *//g'|sed 's/"//g'|sed 's/,//g'|sed 's/ *$//g' >./advanced.log`
+        ## 读取更多参数
+        cat $info |egrep "history_failure_rate|authenticated_count|pending_count|cost|last_check_ledger" |awk -F':' '{print $2}' |sed 's/^ *//g'|sed 's/"//g'|sed 's/,//g'|sed 's/ *$//g' >./advanced.log
         a_fault_rate=`head -1 ./advanced.log`
         a_auth_count=`head -2 ./advanced.log |tail -1`
         a_pending_count=`head -3 ./advanced.log |tail -1`
         a_cost=`head -4 ./advanced.log |tail -1`
         a_last_check_ledger=`head -5 ./advanced.log |tail -1`
-        
-        ## 采集主机系统相关信息，使用Windows powershell 命令完成
+
+        # 读取 incoming
+        start_inbound=`cat $info |awk '/inbound/{print NR}' |head -1`
+        end_inbound=`cat $info |awk '/outbound/{print NR}' |head -1`
+        end_outbound=`cat $info |awk '/outbound/{print NR}' |tail -1`
+
+        # 读取同步状态常见参数
+        n_version=$1
+        n_state=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '6p' |awk -F'"' '{print $2}'`
+        n_age=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '2p' |awk -F',' '{print $1}'`
+        n_num=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '3p' |awk -F',' '{print $1}'`
+        # shellcheck disable=SC2126
+        n_in=`sed -n "${start_inbound},${end_inbound}p" $info |grep "stellar" |wc -l`
+        n_out=`sed -n "${end_inbound},${end_outbound}p" $info |grep "stellar" |wc -l`
+        n_status_=`cat $info |egrep "Catching|Waiting" |tail -1`
+
+}
+
+
+# 查询主机信息，由 Windows power shell 完成。
+function system_info(){
+        # 运行powershell查询信息，写入到文件，并将文件转换为Linux系统文件。
         ./systeminfo.sh >./hostlog.log
         dos2unix ./hostlog.log &>/dev/null
 
+        # 对数据筛选。
         s_version=`head -1 ./hostlog.log`
         s_name=`head -2 ./hostlog.log|tail -1`
         s_cpu=`head -3 ./hostlog.log|tail -1`
         s_mem_percent=`head -4 ./hostlog.log|tail -1`
         s_memall=`head -5 ./hostlog.log|tail -1`
         s_memused=`head -6 ./hostlog.log|tail -1`
+}
 
-        # 创建web页面表格，把监控信息填写到表格
+# 端口扫描
+function nmap_port(){
+        nmap -Pn -p $ports $1 |awk '/3140[0-9]/{print $2}' |sed 's/[ \t]*$//g'>portscan.log
+}
+
+# 端口状态信息
+function show_pic(){
+for i in `cat portscan.log`
+do
+        if [ "$i" == "filtered" ];then
+                echo '<td><img class="gray" src="./web/logo-pi.png"></td>' >>$file_
+        elif [ "$i" == "closed" ];then
+                echo '<td><img class="gray" src="./web/logo-pi.png"></td>' >>$file_
+        else
+                echo '<td><img class="gold" src="./web/logo-pi.png"></td>' >>$file_
+        fi
+done
+}
+# 端口扫描间隔
+function scan_time(){
+        upt=`uptime |awk -F':' '{print $2}'`
+        if [ "$upt" == "$CLOCK" ];then
+                nmap_port $local_ip
+                show_pic
+        else
+                nmap_port $ip
+                show_pic
+        fi
+        CLOCK=$upt
+        sleep 0.5
+}
+
+# 整合信息，写入到 HTML 表格
+function web_table_info(){
         touch ./web_table.html
         touch ./webinfo.html
         file_="./web_table.html"
@@ -67,7 +120,8 @@ function node_monitor(){
                 <thead>
                 <tr>
                     <th scope="col">' >$file_
-                    echo ${ip_} >>$file_
+                    # shellcheck disable=SC2129
+                    echo ${ip} >>$file_
                     echo '</th>
                     <th scope="col"></th>
                     <th colspan="2" scope="col">' >>$file_
@@ -166,67 +220,121 @@ function node_monitor(){
                     <td>' >>$file_
                     echo $n_out >>$file_
                     echo '</td>
-                </tr> '>>$file_
+                    </tr> '>>$file_
+
                     echo '
-        <tr>
-            <td></td>
-            <td>failure_rate</td>
-            <td>cost</td>
-            <td>last_check</td>
-            <td>a_count</td>
-            <td>p_count</td>
+                    <tr>
+                          <td></td>
+                          <td>failure_rate</td>
+                          <td>cost</td>
+                          <td>last_check</td>
+                          <td>a_count</td>
+                          <td>p_count</td>
+                    </tr>
 
-        </tr>
-        <tr id="hor-minimalist-a-td">
-            <td> ' >>$file_
-            echo "" >>$file_
-            echo '</td>
-            <td>' >>$file_
-            echo $a_fault_rate >>$file_
-            echo '</td>
-            <td>' >>$file_
-            echo $a_cost >>$file_
-            echo '</td>
-            <td>' >>$file_
-            echo $a_last_check_ledger>>$file_
-            echo '</td>
-            <td>' >>$file_
-            echo $a_auth_count >>$file_
-            echo '</td>
-            <td>' >>$file_
-            echo $a_pending_count>>$file_
-            echo '</td>
-        </tr> '>>$file_
-        ## 下面判断语句，如果出现不同步情况，将采集 status 相关信息，并写入网页文件
-        if [ "" != "$n_status_" ];then
-                echo '
-                <tr >
-                    <td>Status: </td>
-                    <td colspan="5">' >>$file_
-                    echo $n_status_ >>$file_
-                    echo '</td>
-                </tr>' >>$file_
-        fi
+                    <tr id="hor-minimalist-a-td">
+                          <td> ' >>$file_
+                          echo "" >>$file_
+                          echo '</td>
+                          <td>' >>$file_
+                          echo $a_fault_rate >>$file_
+                          echo '</td>
+                          <td>' >>$file_
+                          echo $a_cost >>$file_
+                          echo '</td>
+                          <td>' >>$file_
+                          echo $a_last_check_ledger>>$file_
+                          echo '</td>
+                          <td>' >>$file_
+                          echo $a_auth_count >>$file_
+                          echo '</td>
+                          <td>' >>$file_
+                          echo $a_pending_count>>$file_
+                          echo '</td>
+                    </tr> '>>$file_
+            # 不同步时，将status状态写入到 HTML 表格，方便查看当前状态进度。
+                    if [ "" != "$n_status_" ];then
+                            # shellcheck disable=SC2129
+                            echo '
+                            <tr >
+                                <td>Status: </td>
+                                <td colspan="5">' >>$file_
+                                echo $n_status_ >>$file_
+                                echo '</td>
+                            </tr>' >>$file_
+                    fi
 
-            echo '</tbody>
-        </table>
-            </div>' >>$file_
+                        # shellcheck disable=SC2129
+                        echo '</tbody>
+                        </table>
+                    </div>' >>$file_
+
+                    echo '
+                    <div>
+                        <table id="hor-minimalist-a" summary="Employee Pay Sheet">
+                          <thead>
+                            <tr>
+                              <th scope="col">' >>$file_
+                              # shellcheck disable=SC2129
+                              echo 'Open port'>>$file_
+                              echo '</th>
+                              <th scope="col">00</th>
+                              <th scope="col">01</th>
+                              <th scope="col">02</th>
+                              <th scope="col">03</th>
+                              <th scope="col">04</th>
+                              <th scope="col">05</th>
+                              <th scope="col">06</th>
+                              <th scope="col">07</th>
+                              <th scope="col">08</th>
+                              <th scope="col">09</th>
+                              <th scope="col"></th>
+                              ' >>$file_
+                              echo '</th>
+                            </tr>
+                          </thead>
+                        <tbody>
+                          <tr>
+                            <td >31400-31409</td>' >>$file_
+                              scan_time
+                      echo '<td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>' >>$file_
 }
 
 
-# 不经常变动的参数，采集一次即可，一次性获取Docer 版本号，Pi node软件版本号
+# 不经常变动的参数，采集一次即可，一次性获取Docker 版本号，Pi node软件版本号
 c_version=`powershell.exe winget list --name "Docker" |awk '/Docker/{print $4}'`
 pn_version=`powershell.exe winget list --name "Pi Network" |awk '/Pi Network/{print $4}'`
+local_ip="localhost"
+ports="31400-31409"
+CLOCK="00"
 
+# 网页文件路径参数
+web_info="./webinfo.html"
+web_index="./nginx/index.html"
 #  循环监控容器、操作系统和pi node troubleshooting 节点信息，并写入网页 index.html
 for ((i=1; i<=10;i++))
 do
-        node_monitor $c_version $pn_version
-        cat ./web_head.html >./webinfo.html
-        cat ./web_table.html >>./webinfo.html
-        cat ./web_tail.html >>./webinfo.html
-        cat ./webinfo.html >./nginx/index.html
-        echo "" >./webinfo.html
-        sleep 1
-        let i-=1
+
+# 执行函数
+get_ip
+docker_stats $c_version
+stellar-core_info $pn_version
+system_info
+
+web_table_info
+
+# 写入信息到网页
+cat ./web_head.html >$web_info
+cat ./web_table.html >>$web_info
+cat ./web_tail.html >>$web_info
+cat $web_info >$web_index
+echo "" >$web_info
+sleep 0.5
+# shellcheck disable=SC2219
+let i-=1
+
 done

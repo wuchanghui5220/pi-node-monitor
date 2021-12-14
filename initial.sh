@@ -9,3 +9,5 @@ powershell.exe winget list --name "Docker"
 sudo apt update
 sudo apt install dos2unix
 
+# 安装端口扫描工具 nmap
+sudo apt install nmap

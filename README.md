@@ -300,7 +300,7 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
 
 
 
-## 如果在运行初始化 initial.sh 出现已下报错，
+## 如果在运行初始化 initial.sh 出现以下报错，
 
 ![image](https://user-images.githubusercontent.com/33740652/145662270-0052d7f4-a46e-497f-a237-1094571a5cd5.png)
 
@@ -308,7 +308,7 @@ https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-th
 
 ![image](https://user-images.githubusercontent.com/33740652/145662234-1ec066f3-1749-4e6e-b930-26edc2edcd6d.png)
 
-如果Docker 重启，或者主机重启 ，nginx 容器不会自动运行，需要手动打开，
+## 如果Docker 重启，或者主机重启 ，nginx 容器不会自动运行，需要手动打开，
 
 如下图
 

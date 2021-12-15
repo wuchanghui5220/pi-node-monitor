@@ -17,7 +17,7 @@ function env_check(){
         c_nginx=` docker ps |awk '/nginx/{print $2}'`
 
         echo -n "Docker Desktop:   "
-        if [ "$c_pi" == "$pi" ];then
+        if [ "$docker" == "$c_docker" ];then
                 echo -e "\033[1;32m[ OK ]\033[0m"
                 echo "OK" >check_env.log
         else
@@ -27,7 +27,7 @@ function env_check(){
         fi
         sleep 1
         echo -n "Pi Network Node:  "
-        if [ "$c_docker" == "$docker" ];then
+        if [ "$pi" == "$c_pi" ];then
                 echo -e "\033[1;32m[ OK ]\033[0m"
                 echo "OK" >>check_env.log
         else

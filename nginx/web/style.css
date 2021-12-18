@@ -11,7 +11,7 @@ body
 img {
         height: 27px;
 }
-.gray {
+.closed {
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
@@ -19,7 +19,15 @@ img {
   filter: grayscale(100%);
   filter: gray;
 }
-.gold {
+.filtered {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: gray;
+}
+.open {
         height: 30px;
 }
 .logo {

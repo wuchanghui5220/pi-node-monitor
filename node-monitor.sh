@@ -91,16 +91,12 @@ echo "脚本将一直运行，想要停止，请按 Ctrl + C"
 
 # 开机运行时间
 function get_upt(){
-        #upt=`uptime |sed 's/,  [0-9] user.*//g'|sed 's/.*up //g' |sed 's/,//g'`
-        #upt=`uptime |sed 's/,  [0-9] user.*//g'|sed 's/.*up //g' |sed 's/,//g' |sed 's/\:/_/g'`
         upt=`uptime |sed 's/,  [0-9] user.*//g'|sed 's/.*up //g' |sed 's/,//g'|sed 's/\ /\&nbsp\;/g'`
         echo $upt >args1.log
 }
 
 # 系统时钟
 function sys_time(){
-        #syst=`date "+%H:%M:%S  %Y/%m/%d"`
-        #syst=`date "+%H_%M_%S %Y_%m_%d"`
         syst=`date "+%H:%M:%S %Y/%m/%d" |sed 's/\ /\&nbsp\;\&nbsp\;/g'`
         echo $syst >>args1.log
 }
@@ -114,7 +110,6 @@ function get_ip(){
 
 # 查询 pi-consensus 容器运行状态。
 function ds(){
-        # shellcheck disable=SC2006
         docker_stats_info=`docker container stats pi-consensus --no-stream |grep "pi-consensus" |awk  '{print $2"\n"$3"\n"$7"\n"$8"\n"$10}'`
         # docker版本是相对稳定的参数，没必要每次都要查询，运行脚本时查询一次即可，此处直接读取。
         c_version=$1
@@ -175,7 +170,7 @@ function stellar-core_info(){
         end_outbound=`cat $info |awk '/outbound/{print NR}' |tail -1`
         # 读取同步状态常见参数
         n_version=$1
-        n_state=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '6p' |awk -F'"' '{print $2}'`
+        n_state=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '6p' |awk -F'"' '{print $2}' | sed 's/\ /\&nbsp\;/g'`
         n_age=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '2p' |awk -F',' '{print $1}'`
         n_num=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '3p' |awk -F',' '{print $1}'`
         # shellcheck disable=SC2126

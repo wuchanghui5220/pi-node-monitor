@@ -170,7 +170,7 @@ function stellar-core_info(){
         end_outbound=`cat $info |awk '/outbound/{print NR}' |tail -1`
         # 读取同步状态常见参数
         n_version=$1
-        n_state=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '6p' |awk -F'"' '{print $2}' | sed 's/\ /\&nbsp\;/g'`
+        n_state=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '6p' |awk -F'"' '{print $2}' | sed 's/\ /_/g'`
         n_age=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '2p' |awk -F',' '{print $1}'`
         n_num=`cat $info |egrep "age|num|ledger|state" |awk -F':' '{print $2}' |sed -n '3p' |awk -F',' '{print $1}'`
         # shellcheck disable=SC2126

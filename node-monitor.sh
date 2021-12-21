@@ -231,6 +231,7 @@ function web_info(){
                 p=`head -"$y" ./portscan.log|tail -1`
                 sed -i /open_port$y\ /s/\=\".*/\=\"$p/g ./nginx/index.html
         done
+        cp ./nginx/index.html ./nginx/index.htm
 }
 
 # 常量设置

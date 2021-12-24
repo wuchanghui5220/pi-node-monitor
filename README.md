@@ -157,7 +157,8 @@ Windows 的 winget 命令需要 同意源协议条款 ，输入 y 继续
 
 效果如下图
 
-![image](https://user-images.githubusercontent.com/33740652/145425001-435c496e-d4f9-4a5b-b90a-f67e3477e319.png)
+![image](https://user-images.githubusercontent.com/33740652/147305436-077de82c-ee02-4020-81cb-57ac916e752f.png)
+
 
 如图所示，脚本一直运行，要停止 按 Ctrl + C 即可停止。
 

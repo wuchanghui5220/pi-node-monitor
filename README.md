@@ -21,6 +21,7 @@ Pi Network Pi node Stellar-core，docker and server monitoring.
   1) pi node 共识容器的状态，cpu使用率，内存使用率，I/O 
   2) 主机系统状态，CPU使用率，内存使用率
   3) pi node stellar-core 状态，常见参数 同步状态 state age local_block_number Incoming Outgoing
+  4) 扫描 31400-31409 端口号。
 
 将以上信息写入到脚本所在目录的nginx 目录内的网页文件 index.html ,就可以访问这个网页。
 要在网路上进行访问index.html, 所以需要安装网页访问服务软件 nginx

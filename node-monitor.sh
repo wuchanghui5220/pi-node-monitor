@@ -207,6 +207,11 @@ function scan_host(){
                 nmap_port localhost
         else
                 nmap_port $ip
+                if [ "$n_status" != "" ];then
+                        echo -n "localhost clock: " >>node_status.log
+                        date >>node_status.log
+                        docker exec -it pi-consensus stellar-core http-command info >>node_status.log
+                fi
         fi
         CLOCK=$upt
         sleep 0.5

@@ -176,7 +176,7 @@ function stellar-core_info(){
         # shellcheck disable=SC2126
         n_in=`sed -n "${start_inbound},${end_inbound}p" $info |grep "stellar" |wc -l`
         n_out=`sed -n "${end_inbound},${end_outbound}p" $info |grep "stellar" |wc -l`
-        n_status_=`cat $info |egrep "Catching|Waiting" |tail -1`
+        n_status=`cat $info |egrep "Catching|Waiting" |tail -1|awk -F'"' '{print $2}' |sed 's/\ /_/g'`
 
         echo $n_version >>args1.log
         echo $n_state >>args1.log
@@ -208,9 +208,9 @@ function scan_host(){
         else
                 nmap_port $ip
                 if [ "$n_status" != "" ];then
-                        echo -n "localhost clock: " >>node_status.log
-                        date >>node_status.log
-                        docker exec -it pi-consensus stellar-core http-command info >>node_status.log
+                        echo -n "localhost clock: " >>stellar-core-status.log
+                        date >>stellar-core-status.log
+                        docker exec -it pi-consensus stellar-core http-command info >>stellar-core-status.log
                 fi
         fi
         CLOCK=$upt
@@ -231,6 +231,7 @@ function web_info(){
                 a=`head -"$x" ./args1.log|tail -1`
                 sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.html
         done
+        sed -i '/arg27/s/_/\ /g' ./nginx/index.html
         for ((y=1;y<=10;y++))
         do
                 p=`head -"$y" ./portscan.log|tail -1`

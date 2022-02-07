@@ -176,7 +176,7 @@ function stellar-core_info(){
         # shellcheck disable=SC2126
         n_in=`sed -n "${start_inbound},${end_inbound}p" $info |grep "stellar" |wc -l`
         n_out=`sed -n "${end_inbound},${end_outbound}p" $info |grep "stellar" |wc -l`
-        n_status=`cat $info |egrep "Catching|Waiting" |tail -1|awk -F'"' '{print $2}' |sed 's/\ /_/g'`
+        n_status=`cat $info |egrep "Catching|Waiting" |tail -1|sed 's/^[ \t]*//g' |sed 's/\ /_/g'`
 
         echo $n_version >>args1.log
         echo $n_state >>args1.log

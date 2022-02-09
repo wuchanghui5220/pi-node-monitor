@@ -213,14 +213,23 @@ function web_info(){
         for ((x=1;x<=27;x++))
         do
                 a=`head -"$x" ./args1.log|tail -1`
-                sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.html
+                if [ $x == 1 ];then
+                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.html
+                        sed -i '/arg1 /s/_/\ /g' ./nginx/index.html
+                elif [ $x == 2 ];then
+                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.html
+                        sed -i '/arg2 /s#_#\&nbsp\;\&nbsp\;\&nbsp\;\&nbsp\;#g' ./nginx/index.html
+                        sed -i '/arg2 /s/X/\//g' ./nginx/index.html
+                elif [ $x == 27 ];then
+                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.html
+                        sed -i '/arg27 /s/_/\ /g' ./nginx/index.html
+                        sed -i '/arg27 /s/X/\//g' ./nginx/index.html
+                        sed -i '/arg27 /s/AND/\&/g' ./nginx/index.html
+
+                else
+                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.html
+                fi
         done
-        sed -i '/arg1 /s/_/\ /g' ./nginx/index.html
-        sed -i '/arg2 /s#_#\&nbsp\;\&nbsp\;\&nbsp\;\&nbsp\;#g' ./nginx/index.html
-        sed -i '/arg2 /s/X/\//g' ./nginx/index.html
-        sed -i '/arg27 /s/AND/\&/g' ./nginx/index.html
-        sed -i '/arg27 /s/_/\ /g' ./nginx/index.html
-        sed -i '/arg27 /s/X/\//g' ./nginx/index.html
         for ((y=1;y<=10;y++))
         do
                 p=`head -"$y" ./portscan.log|tail -1`
@@ -228,6 +237,7 @@ function web_info(){
         done
         cp ./nginx/index.html ./nginx/index.htm
 }
+
 
 # 常量设置
 CLOCK=""

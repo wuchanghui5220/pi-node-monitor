@@ -23,7 +23,6 @@ function env_check(){
         else
                 echo -e "\033[1;31m[ None ]\033[0m"
                 echo "None" >check_env.log
-
         fi
         sleep 1
         echo -n "Pi Network Node:  "
@@ -33,7 +32,6 @@ function env_check(){
         else
                 echo -e "\033[1;31m[ None ]\033[0m"
                 echo "None" >>check_env.log
-
         fi
         sleep 1
         echo -n "Linux nmap:       "
@@ -63,7 +61,6 @@ function env_check(){
                 echo "None" >>check_env.log
         fi
         sleep 1
-
 }
 
 env_check
@@ -76,8 +73,6 @@ function check_out(){
                         exit 0
                 fi
         done
-
-
 }
 
 check_out
@@ -91,16 +86,15 @@ echo "脚本将一直运行，想要停止，请按 Ctrl + C"
 
 # 开机运行时间
 function get_upt(){
-        upt=`uptime |sed 's/,  [0-9] user.*//g'|sed 's/.*up //g' |sed 's/,//g'|sed 's/\ /\&nbsp\;/g'`
+        upt=`uptime |sed 's/,  [0-9] user.*//g'|sed 's/.*up //g' |sed 's/,//g'|sed 's/\ /_/g'`
         echo $upt >args1.log
 }
 
 # 系统时钟
 function sys_time(){
-        syst=`date "+%H:%M:%S %Y/%m/%d" |sed 's/\ /\&nbsp\;\&nbsp\;/g'`
+        syst=`date "+%H:%M:%S %Y/%m/%d" |sed 's/\//X/g'|sed 's/\ /_/g'`
         echo $syst >>args1.log
 }
-
 
 # 获取本机公网ip地址
 function get_ip(){
@@ -127,7 +121,6 @@ function ds(){
         echo $c_out >>args1.log
 }
 
-
 # 查询主机信息，由 Windows power shell 完成。
 function system_info(){
         # 运行powershell查询信息，写入到文件，并将文件转换为Linux系统文件。
@@ -149,7 +142,6 @@ function system_info(){
         echo $s_memused >>args1.log
 }
 
-
 # 查询 stellar-core 信息，结果写入到文件待用。
 function stellar-core_info(){
         touch ./consensus_log.log
@@ -157,7 +149,6 @@ function stellar-core_info(){
         docker exec -it pi-consensus stellar-core http-command peers > $info
         docker exec -it pi-consensus stellar-core http-command info >> $info
         ## 使用 stellar-core 查询结果进行数据筛选，读取相关参数。
-        ## 读取更多参数
         cat $info |egrep "history_failure_rate|authenticated_count|pending_count|cost|last_check_ledger" |awk -F':' '{print $2}' |sed 's/^ *//g'|sed 's/"//g'|sed 's/,//g'|sed 's/ *$//g' >./advanced.log
         a_fault_rate=`head -1 ./advanced.log`
         a_auth_count=`head -2 ./advanced.log |tail -1`
@@ -176,7 +167,7 @@ function stellar-core_info(){
         # shellcheck disable=SC2126
         n_in=`sed -n "${start_inbound},${end_inbound}p" $info |grep "stellar" |wc -l`
         n_out=`sed -n "${end_inbound},${end_outbound}p" $info |grep "stellar" |wc -l`
-        n_status=`cat $info |egrep "Catching|Waiting" |tail -1|sed 's/^[ \t]*//g' |sed 's/\ /_/g'`
+        n_status=`cat $info |egrep "Catching|Waiting" |tail -1|sed 's/^[ \t]*//g' |sed 's/\&/AND/g'|sed 's/\ /_/g'|sed 's/\//X/g'`
 
         echo $n_version >>args1.log
         echo $n_state >>args1.log
@@ -219,19 +210,17 @@ function scan_host(){
 
 # write information
 function web_info(){
-        upt1=`head -1 args1.log`
-        sed -i 40d ./nginx/index.html
-        sed -i 40i$upt1 ./nginx/index.html
-        syst1=`head -2 args1.log|tail -1`
-        sed -i 44d ./nginx/index.html
-        sed -i 44i$syst1 ./nginx/index.html
-
-        for ((x=3;x<=27;x++))
+        for ((x=1;x<=27;x++))
         do
                 a=`head -"$x" ./args1.log|tail -1`
                 sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.html
         done
-        sed -i '/arg27/s/_/\ /g' ./nginx/index.html
+        sed -i '/arg1 /s/_/\ /g' ./nginx/index.html
+        sed -i '/arg2 /s#_#\&nbsp\;\&nbsp\;\&nbsp\;\&nbsp\;#g' ./nginx/index.html
+        sed -i '/arg2 /s/X/\//g' ./nginx/index.html
+        sed -i '/arg27 /s/AND/\&/g' ./nginx/index.html
+        sed -i '/arg27 /s/_/\ /g' ./nginx/index.html
+        sed -i '/arg27 /s/X/\//g' ./nginx/index.html
         for ((y=1;y<=10;y++))
         do
                 p=`head -"$y" ./portscan.log|tail -1`

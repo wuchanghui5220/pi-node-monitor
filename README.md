@@ -263,6 +263,9 @@ Windows 的 winget 命令需要 同意源协议条款 ，输入 y 继续
 
 # 常见问题总结
 
+## 在powershell 输入 Ubuntu 报错，可以尝试输入 wsl，如下图：
+![image](https://user-images.githubusercontent.com/33740652/154604094-b6ea3ddb-7a79-4e24-8210-5b1a7848417f.png)
+
 ## wsl 版本问题，在微软应用商店安装Ubuntu-20.04，查询版本 是 v1，
 
 重新设置一次 wsl1 to wsl2 步骤，参考微软官网链接

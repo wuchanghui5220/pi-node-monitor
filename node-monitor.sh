@@ -214,28 +214,28 @@ function web_info(){
         do
                 a=`head -"$x" ./args1.log|tail -1`
                 if [ $x == 1 ];then
-                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.html
-                        sed -i '/arg1 /s/_/\ /g' ./nginx/index.html
+                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.htm
+                        sed -i '/arg1 /s/_/\ /g' ./nginx/index.htm
                 elif [ $x == 2 ];then
-                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.html
-                        sed -i '/arg2 /s#_#\&nbsp\;\&nbsp\;\&nbsp\;\&nbsp\;#g' ./nginx/index.html
-                        sed -i '/arg2 /s/X/\//g' ./nginx/index.html
+                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.htm
+                        sed -i '/arg2 /s#_#\&nbsp\;\&nbsp\;\&nbsp\;\&nbsp\;#g' ./nginx/index.htm
+                        sed -i '/arg2 /s/X/\//g' ./nginx/index.htm
                 elif [ $x == 27 ];then
-                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.html
-                        sed -i '/arg27 /s/_/\ /g' ./nginx/index.html
-                        sed -i '/arg27 /s/SLASH/\//g' ./nginx/index.html
-                        sed -i '/arg27 /s/AND/\&/g' ./nginx/index.html
+                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.htm
+                        sed -i '/arg27 /s/_/\ /g' ./nginx/index.htm
+                        sed -i '/arg27 /s/SLASH/\//g' ./nginx/index.htm
+                        sed -i '/arg27 /s/AND/\&/g' ./nginx/index.htm
 
                 else
-                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.html
+                        sed -i /arg$x\ /s/\>.*/\>$a/g ./nginx/index.htm
                 fi
         done
         for ((y=1;y<=10;y++))
         do
                 p=`head -"$y" ./portscan.log|tail -1`
-                sed -i /open_port$y\ /s/\=\".*/\=\"$p/g ./nginx/index.html
+                sed -i /open_port$y\ /s/\=\".*/\=\"$p/g ./nginx/index.htm
         done
-        cp ./nginx/index.html ./nginx/index.htm
+        cp ./nginx/index.htm ./nginx/index.html
 }
 
 
